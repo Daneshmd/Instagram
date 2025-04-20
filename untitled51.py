@@ -238,39 +238,19 @@ def home_screen(current_user: str):
             create_post(current_user)
         elif choice == "4":
             return
-def search_users():
-  search=input("search a username or an email")
-  if os.path.exists(USERS_FILE):
-   if user != user.blocked_users
-            with open(USERS_FILE, 'r') as f:
-                 consule.print("[yellow]successfully attended to page.[/]")
-                 if os.path.exists(EMAILS_FILE):
-                  with open(EMAILS_FILE, 'r') as f:
-                    consule.print("[yellow]successfully find the page.[/]")
-                     users_data = json.load(f)
-                     emails_data =json.load(f)
-                  for username, data in users_data.items():
-                      user = User(username, data['email'])
-                      user.bio = data.values('bio', '')
-                      user.followers = data.values('followers', [])
-                      user.following = data.values('following', [])
-                      user.posts = data.values('posts', [])
-
-   elif user != confirm_user:
-    console.print("[red]Username doesn't be found please search another username.[/]")
-   else:
-    consule.print("[red]You can't see this page maybe you are be blocked")
-
-def messages():
-  for users not in blocked_users:
-    if 1:
-      if os.path.exists(MESSAGES_FILE):
-               with open(MESSAGES_FILE, 'r') as f:
-                    users_data = json.load(f)
-                     message.created_at = message_data.get('created_at', datetime.now().isoformat())
-                     messsages.append(message)
-              return
-
+            
+def search_users(current_user: str):
+      console.print(Panel("Search users", style="DarkOliveGreen4"))
+      search= Prompt.ask("Enter the username that you wan't")
+      found_users = [user for user in users if search.lower() in user.lower()]
+        if not found_users:
+           console.print("[red]Username doesn't be found. Please search another username.[/]")
+        elif user in blocked_users:
+            console.print("[bisque]Username is in blocked list.[/]")
+        else:
+           console.print("[chartreuse]User is found:[/]")
+           for user in found_users:
+               console.print(f"- {user}")
 
    username = Prompt.ask("Username (or type back to cancel)")
         if username.lower()== 'back':
